@@ -5,10 +5,14 @@
       "id": "sample-1",
       "title": "Demo clip: replace with your best edit",
       "category": "edit",
-      "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "url": "https://youtu.be/Jo9dDsV9_-c?si=bj8BfrIBssXmwgQR",
+      "thumbnail": "media/thumbs/demo-clip-replace-with-your-best-edit-mv9v79sa.png",
       "duration": "1:45",
       "year": 2026,
-      "tools": ["Premiere Pro", "DaVinci Resolve"],
+      "tools": [
+        "Premiere Pro",
+        "DaVinci Resolve"
+      ],
       "description": "This is a sample entry using a public Blender Foundation film so you can see how YouTube links play. Delete it from the admin panel once your own work is in.",
       "featured": true
     },
@@ -19,7 +23,9 @@
       "url": "",
       "duration": "0:30",
       "year": 2026,
-      "tools": ["CapCut"],
+      "tools": [
+        "CapCut"
+      ],
       "description": "Sample reel. Add an Instagram, YouTube Shorts or uploaded video link from the admin panel.",
       "featured": true
     },
@@ -30,7 +36,11 @@
       "url": "",
       "duration": "2:10",
       "year": 2026,
-      "tools": ["Runway", "Midjourney", "ElevenLabs"],
+      "tools": [
+        "Runway",
+        "Midjourney",
+        "ElevenLabs"
+      ],
       "description": "Sample AI piece. Describe your prompt process and what you finished by hand.",
       "featured": true
     },
@@ -41,7 +51,10 @@
       "url": "",
       "duration": "1:20",
       "year": 2025,
-      "tools": ["Premiere Pro", "After Effects"],
+      "tools": [
+        "Premiere Pro",
+        "After Effects"
+      ],
       "featured": true
     },
     {
@@ -51,7 +64,9 @@
       "url": "",
       "duration": "0:45",
       "year": 2025,
-      "tools": ["Premiere Pro"],
+      "tools": [
+        "Premiere Pro"
+      ],
       "featured": true
     },
     {
@@ -61,7 +76,10 @@
       "url": "",
       "duration": "0:40",
       "year": 2025,
-      "tools": ["Midjourney", "Photoshop"],
+      "tools": [
+        "Midjourney",
+        "Photoshop"
+      ],
       "featured": true
     },
     {
@@ -71,7 +89,9 @@
       "url": "",
       "duration": "3:20",
       "year": 2025,
-      "tools": ["DaVinci Resolve"]
+      "tools": [
+        "DaVinci Resolve"
+      ]
     },
     {
       "id": "sample-8",
@@ -80,7 +100,9 @@
       "url": "",
       "duration": "0:58",
       "year": 2025,
-      "tools": ["Premiere Pro"]
+      "tools": [
+        "Premiere Pro"
+      ]
     },
     {
       "id": "sample-9",
@@ -89,7 +111,9 @@
       "url": "",
       "duration": "0:12",
       "year": 2024,
-      "tools": ["After Effects"]
+      "tools": [
+        "After Effects"
+      ]
     }
   ]
 }
