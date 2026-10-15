@@ -185,7 +185,7 @@
       state.site = s ? JSON.parse(s.text) : { name: 'Your Name' };
       if (!Array.isArray(state.site.categories) || !state.site.categories.length) state.site.categories = DEFAULT_CATS;
       state.savedWorks = JSON.stringify(state.works);
-      state.theme = Theme.normalize(state.site.theme);
+      state.theme = window.Theme ? Theme.normalize(state.site.theme) : null;
       state.savedTheme = JSON.stringify(state.theme);
       localStorage.setItem(KEY, JSON.stringify(cfg));
       showApp();
@@ -211,7 +211,7 @@
       : `https://${owner}.github.io/${isUserSite ? '' : repo + '/'}`;
     renderList();
     fillProfile();
-    fillDesign();
+    if (state.theme) fillDesign();
   }
 
   /* ---------------- Works list ---------------- */
@@ -692,7 +692,10 @@
     queuePreview();
   }
 
-  function designDirty() { return JSON.stringify(state.theme) !== state.savedTheme || !!state.phFile; }
+  function designDirty() {
+    if (!state.theme) return false;
+    return JSON.stringify(state.theme) !== state.savedTheme || !!state.phFile;
+  }
 
   function updateDesignDirty() {
     const d = designDirty();
@@ -740,6 +743,11 @@
   }
 
   function startDesign() {
+    if (!window.Theme || !state.theme) {
+      $('#designMissing').hidden = false;
+      df.hidden = true;
+      return;
+    }
     if (!fontsLoaded) {
       fontsLoaded = true;
       const link = document.createElement('link');

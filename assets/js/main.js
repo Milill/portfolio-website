@@ -19,6 +19,12 @@
   const cats = new Map();
   let filter = 'all';
 
+  // Design settings are optional: if theme.js is missing, the default look is used.
+  const applyTheme = t => {
+    if (window.Theme) Theme.apply(t);
+    else console.warn('assets/js/theme.js did not load, so the default design is shown.');
+  };
+
   const cat = id => cats.get(id) || { id, name: id || 'Other', color: '#ABA4BA', track: 'V1' };
 
   setupNav();
@@ -28,7 +34,7 @@
   // Live preview: the admin's Design tab sends draft settings here.
   window.addEventListener('message', e => {
     if (e.origin !== location.origin || !e.data || e.data.type !== 'portfolio-theme') return;
-    Theme.apply(e.data.theme);
+    applyTheme(e.data.theme);
     document.documentElement.classList.remove('pending');
   });
 
@@ -44,7 +50,7 @@
     try {
       const [s, w] = await Promise.all([load('data/site.json'), load('data/works.json')]);
       site = s || {};
-      Theme.apply(site.theme);
+      applyTheme(site.theme);
       document.documentElement.classList.remove('pending');
       works = (w.works || []).filter(x => x && x.title);
       (site.categories || []).forEach(c => cats.set(c.id, c));
@@ -61,7 +67,7 @@
       }
     } catch (err) {
       console.error(err);
-      Theme.apply(site.theme);
+      applyTheme(site.theme);
       document.documentElement.classList.remove('pending');
       const why = location.protocol === 'file:'
         ? 'Browsers block data files opened straight from your computer. Open the site through GitHub Pages, or run a local server (see README).'

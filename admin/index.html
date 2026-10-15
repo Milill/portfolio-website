@@ -310,6 +310,10 @@
       </div>
 
       <div id="panelDesign" role="tabpanel" aria-labelledby="tabDesign" hidden>
+        <div class="card-box" id="designMissing" hidden>
+          <h2>Design tools couldn't load</h2>
+          <p class="hint" style="font-size:1rem">The file <strong>assets/js/theme.js</strong> is missing from your repository. Upload the <strong>assets</strong> folder from the download again, wait a minute, then refresh this page.</p>
+        </div>
         <form id="designForm" novalidate>
           <div class="design">
             <div class="d-controls">
@@ -466,8 +470,8 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="../assets/js/media.js"></script>
-  <script src="../assets/js/theme.js"></script>
-  <script src="admin.js"></script>
+  <script src="../assets/js/media.js?v=3"></script>
+  <script src="../assets/js/theme.js?v=3"></script>
+  <script src="admin.js?v=3"></script>
 </body>
 </html>
