@@ -1,0 +1,55 @@
+{
+  "name": "Your Name",
+  "role": "Video editor & AI content creator",
+  "intro": "I edit reels, brand films and YouTube videos, and I make visuals with AI tools. This page is a running reel of what I've made lately.",
+  "location": "Your city, Country",
+  "availability": "Open to freelance projects",
+  "photo": "",
+  "bio": [
+    "I started editing on a borrowed laptop, cutting videos for friends, and never stopped. Today I work with creators, small brands and agencies on everything from 15-second reels to full launch films.",
+    "Lately I've been mixing traditional editing with AI tools: generated scenes, voice work and upscaling, always finished by hand so the result still feels made by a person.",
+    "Replace this text with your own story from the admin panel."
+  ],
+  "email": "hello@example.com",
+  "contactNote": "Tell me about your project, your deadline and where the video will be posted. I usually reply within a day.",
+  "socials": [
+    { "label": "Instagram", "url": "https://instagram.com/" },
+    { "label": "YouTube", "url": "https://youtube.com/" },
+    { "label": "LinkedIn", "url": "https://linkedin.com/" }
+  ],
+  "tools": ["Premiere Pro", "After Effects", "DaVinci Resolve", "CapCut", "Photoshop", "Runway", "Midjourney", "ElevenLabs"],
+  "categories": [
+    {
+      "id": "edit",
+      "name": "Video editing",
+      "color": "#9B8CFF",
+      "track": "V1",
+      "format": "landscape",
+      "blurb": "Brand films, YouTube videos, music videos and event highlights, cut for pace and story."
+    },
+    {
+      "id": "reel",
+      "name": "Reels",
+      "color": "#FFB547",
+      "track": "V1",
+      "format": "vertical",
+      "blurb": "Vertical edits for Instagram, YouTube Shorts and TikTok, built to hold attention from the first second."
+    },
+    {
+      "id": "ai",
+      "name": "AI content",
+      "color": "#3CC9B9",
+      "track": "V2",
+      "format": "landscape",
+      "blurb": "Generated films, images and voice work, directed and finished by hand."
+    },
+    {
+      "id": "other",
+      "name": "Other",
+      "color": "#FF7A9A",
+      "track": "V1",
+      "format": "landscape",
+      "blurb": "Motion graphics, thumbnails, color grading and anything else that doesn't fit a box."
+    }
+  ]
+}

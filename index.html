@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Name, video editor &amp; AI content creator</title>
+  <meta name="description" content="Portfolio of video edits, reels and AI-made content.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Your Name, video editor &amp; AI content creator">
+  <meta property="og:description" content="Portfolio of video edits, reels and AI-made content.">
+  <meta name="theme-color" content="#1D1B24">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231D1B24'/%3E%3Crect x='5' y='9' width='12' height='6' rx='1.5' fill='%239B8CFF'/%3E%3Crect x='11' y='18' width='16' height='6' rx='1.5' fill='%23FFB547'/%3E%3Crect x='19' y='4' width='2' height='24' fill='%23FF4D3D'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#work">Skip to work</a>
+
+  <header class="topbar" id="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" data-bind="name">Your Name</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="heroName">
+      <h1 class="hero-name" id="heroName" data-bind="name">Your Name</h1>
+      <div class="hero-sub">
+        <p class="hero-role" data-bind="role">Video editor &amp; AI content creator</p>
+        <p class="hero-intro" data-bind="intro"></p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#work">See my work</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <!-- Featured work, laid out as an edit timeline -->
+      <div class="edit" id="edit" hidden>
+        <div class="edit-bar">
+          <output class="tc" id="tc" aria-label="Timecode">00:00:00:00</output>
+          <p class="at" id="at">Drag the playhead to preview a clip</p>
+          <button class="btn btn-small" id="atPlay" type="button" disabled>Play clip</button>
+        </div>
+        <div class="tracks" id="tracks">
+          <div class="ruler" id="ruler" aria-hidden="true"></div>
+          <div class="track"><span class="tlabel">V2</span><div class="lane" id="laneV2"></div></div>
+          <div class="track"><span class="tlabel">V1</span><div class="lane" id="laneV1"></div></div>
+          <div class="track track-audio" aria-hidden="true"><span class="tlabel">A1</span><div class="lane wave" id="laneA1"></div></div>
+          <div class="playhead" id="playhead" role="slider" tabindex="0" aria-label="Playhead" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="ph-head"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section work" id="work" aria-labelledby="workTitle">
+      <div class="wrap">
+        <div class="work-head">
+          <h2 id="workTitle">Work</h2>
+          <div class="bins" id="bins" role="group" aria-label="Filter by category"></div>
+        </div>
+        <div class="grid" id="grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section about" id="about" aria-labelledby="aboutTitle">
+      <div class="wrap about-grid">
+        <figure class="portrait" id="portrait"></figure>
+        <div class="about-text">
+          <h2 id="aboutTitle">About</h2>
+          <div class="bio" id="bio"></div>
+          <p class="facts" id="facts"></p>
+          <h3>What I make</h3>
+          <dl class="makes" id="makes"></dl>
+          <h3>Tools I use</h3>
+          <ul class="chips" id="tools"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contactTitle">
+      <div class="wrap">
+        <h2 id="contactTitle">Get in touch</h2>
+        <p class="contact-note" data-bind="contactNote"></p>
+        <a class="contact-email" id="email" href="mailto:hello@example.com">hello@example.com</a>
+        <ul class="socials" id="socials"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>&copy; <span id="year"></span> <span data-bind="name">Your Name</span></p>
+      <p id="updated"></p>
+    </div>
+  </footer>
+
+  <dialog class="player" id="player" aria-labelledby="playerTitle">
+    <button class="player-close" id="playerClose" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="player-inner">
+      <div class="player-media" id="playerMedia"></div>
+      <div class="player-info">
+        <p class="player-meta" id="playerMeta"></p>
+        <h2 id="playerTitle"></h2>
+        <p class="player-desc" id="playerDesc"></p>
+        <ul class="chips" id="playerTools"></ul>
+        <a class="btn" id="playerLink" target="_blank" rel="noopener" hidden>Open original</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="assets/js/media.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
