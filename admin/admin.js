@@ -27,7 +27,11 @@
     works: [],
     sha: {},
     savedWorks: '[]',
-    editing: -1
+    editing: -1,
+    theme: null,
+    savedTheme: '',
+    phFile: null,
+    phBlob: ''
   };
 
   /* ---------------- Helpers ---------------- */
@@ -181,6 +185,8 @@
       state.site = s ? JSON.parse(s.text) : { name: 'Your Name' };
       if (!Array.isArray(state.site.categories) || !state.site.categories.length) state.site.categories = DEFAULT_CATS;
       state.savedWorks = JSON.stringify(state.works);
+      state.theme = Theme.normalize(state.site.theme);
+      state.savedTheme = JSON.stringify(state.theme);
       localStorage.setItem(KEY, JSON.stringify(cfg));
       showApp();
     } catch (e) {
@@ -205,6 +211,7 @@
       : `https://${owner}.github.io/${isUserSite ? '' : repo + '/'}`;
     renderList();
     fillProfile();
+    fillDesign();
   }
 
   /* ---------------- Works list ---------------- */
@@ -541,6 +548,7 @@
       pf.photoFile.value = '';
       fillProfile();
       renderList();
+      if (state.theme) refreshDesignUI();
       status.textContent = '';
       toast('Profile published. Your site updates in about a minute.');
     } catch (err) {
@@ -551,27 +559,336 @@
     }
   });
 
+
+  /* ---------------- Design ---------------- */
+
+  const df = $('#designForm');
+  const COLOR_FIELDS = [
+    { key: 'bg', label: 'Background', note: 'Page background' },
+    { key: 'surface', label: 'Panels', note: 'Timeline and About section' },
+    { key: 'text', label: 'Text', note: 'Headings and paragraphs' },
+    { key: 'muted', label: 'Secondary text', note: 'Captions and details' },
+    { key: 'accent', label: 'Accent', note: 'Playhead, timecode, email underline' }
+  ];
+  const HEX6 = /^#[0-9a-f]{6}$/i;
+  let fontsLoaded = false;
+  let previewStarted = false;
+  let previewQueued = false;
+
+  function radio(name, value) {
+    const el = df.querySelector(`input[name="${name}"][value="${value}"]`);
+    if (el) el.checked = true;
+  }
+
+  function fillDesign() {
+    const t = state.theme;
+    const fontOpts = list => list.map(f => `<option value="${esc(f.name)}">${esc(f.name)}${f.kind === 'serif' ? ' (serif)' : ''}</option>`).join('');
+    df.headFont.innerHTML = fontOpts(Theme.FONTS);
+    df.bodyFont.innerHTML = fontOpts(Theme.FONTS.filter(f => f.body));
+    df.headFont.value = t.headingFont;
+    if (![...df.bodyFont.options].some(o => o.value === t.bodyFont)) {
+      df.bodyFont.insertAdjacentHTML('beforeend', `<option value="${esc(t.bodyFont)}">${esc(t.bodyFont)}</option>`);
+    }
+    df.bodyFont.value = t.bodyFont;
+
+    $('#dPresets').innerHTML = Object.entries(Theme.PRESETS).map(([id, p]) =>
+      `<button class="preset" type="button" data-preset="${id}" aria-pressed="false"><span class="dots"><i style="background:${p.colors.bg}"></i><i style="background:${p.colors.text}"></i><i style="background:${p.colors.accent}"></i></span>${esc(p.label)}</button>`
+    ).join('');
+    $('#dColors').innerHTML = COLOR_FIELDS.map(f =>
+      `<div class="crow"><input type="color" data-color="${f.key}" aria-label="${f.label} color"><span>${f.label}<small>${f.note}</small></span><input type="text" class="hex" data-hex="${f.key}" maxlength="7" aria-label="${f.label} hex code" spellcheck="false"></div>`
+    ).join('');
+    syncColors();
+
+    radio('heroAlign', t.heroAlign);
+    radio('headAlign', t.headingAlign);
+    df.nameSize.value = t.nameSize;
+    df.headSize.value = t.headingSize;
+    radio('bodySize', [16, 17, 19].includes(t.bodySize) ? t.bodySize : 17);
+    df.timeline.checked = t.timeline;
+    radio('gridLayout', t.gridLayout);
+    radio('gridColumns', t.gridColumns);
+    df.cardShape.value = t.uniformShape;
+    radio('phStyle', t.placeholder.style);
+    df.phTitle.checked = t.placeholder.showTitle;
+    df.phImage.value = t.placeholder.image;
+    df.phFile.value = '';
+    renderSections();
+    refreshDesignUI();
+  }
+
+  function syncColors() {
+    const c = state.theme.colors;
+    COLOR_FIELDS.forEach(f => {
+      df.querySelector(`[data-color="${f.key}"]`).value = c[f.key].toLowerCase();
+      const hex = df.querySelector(`[data-hex="${f.key}"]`);
+      if (document.activeElement !== hex) hex.value = c[f.key].toUpperCase();
+    });
+    document.querySelectorAll('#dPresets .preset').forEach(b => b.setAttribute('aria-pressed', b.dataset.preset === state.theme.preset));
+  }
+
+  function renderSections() {
+    const list = state.theme.sections;
+    $('#dSections').innerHTML = list.map((s, i) => `
+      <li class="${s.show ? '' : 'off'}">
+        <span class="sname">${esc(Theme.SECTION_NAMES[s.id])}</span>
+        <label><input type="checkbox" data-show="${i}" ${s.show ? 'checked' : ''}> Show</label>
+        <button class="icon-btn" type="button" data-move="up" data-i="${i}" aria-label="Move ${Theme.SECTION_NAMES[s.id]} up" ${i === 0 ? 'disabled' : ''}>
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="icon-btn" type="button" data-move="down" data-i="${i}" aria-label="Move ${Theme.SECTION_NAMES[s.id]} down" ${i === list.length - 1 ? 'disabled' : ''}>
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </li>`).join('');
+  }
+
+  function readDesign() {
+    const t = state.theme;
+    t.headingFont = df.headFont.value;
+    t.bodyFont = df.bodyFont.value;
+    t.heroAlign = df.heroAlign.value;
+    t.headingAlign = df.headAlign.value;
+    t.nameSize = Number(df.nameSize.value);
+    t.headingSize = Number(df.headSize.value);
+    t.bodySize = Number(df.bodySize.value);
+    t.timeline = df.timeline.checked;
+    t.gridLayout = df.gridLayout.value;
+    t.gridColumns = Number(df.gridColumns.value);
+    t.uniformShape = df.cardShape.value;
+    t.placeholder.style = df.phStyle.value;
+    t.placeholder.showTitle = df.phTitle.checked;
+    t.placeholder.image = df.phImage.value.trim();
+  }
+
+  function refreshDesignUI() {
+    const t = state.theme;
+    $('#oNameSize').textContent = t.nameSize + '%';
+    $('#oHeadSize').textContent = t.headingSize + '%';
+    const head = $('#dHeadSample');
+    head.style.fontFamily = Theme.stack(t.headingFont);
+    head.textContent = state.site.name || 'Your Name';
+    $('#dBodySample').style.fontFamily = Theme.stack(t.bodyFont);
+
+    $('#dShapeField').hidden = t.gridLayout !== 'uniform';
+    $('#dGridHint').textContent = t.gridLayout === 'uniform'
+      ? 'Every card is cropped to the same shape.'
+      : 'Each video keeps its own shape: reels tall, edits wide.';
+    $('#dPhImageField').hidden = t.placeholder.style !== 'image';
+    $('#dPhTitleField').hidden = t.placeholder.style === 'plain';
+
+    // Readability check
+    const c = t.colors;
+    const textC = Theme.contrast(c.text, c.bg);
+    const mutedC = Theme.contrast(c.muted, c.bg);
+    const panelC = Theme.contrast(c.text, c.surface);
+    const issues = [];
+    if (textC < 4.5) issues.push(`Text on background is ${textC.toFixed(1)}:1`);
+    if (panelC < 4.5) issues.push(`text on panels is ${panelC.toFixed(1)}:1`);
+    if (mutedC < 3) issues.push(`secondary text is ${mutedC.toFixed(1)}:1`);
+    const box = $('#dContrast');
+    box.classList.toggle('warn', issues.length > 0);
+    box.textContent = issues.length
+      ? `Hard to read: ${issues.join(', ')}. Aim for at least 4.5:1 for text and 3:1 for secondary text.`
+      : `Readable: text contrast is ${textC.toFixed(1)}:1.`;
+
+    updateDesignDirty();
+    queuePreview();
+  }
+
+  function designDirty() { return JSON.stringify(state.theme) !== state.savedTheme || !!state.phFile; }
+
+  function updateDesignDirty() {
+    const d = designDirty();
+    const el = $('#dDirty');
+    el.textContent = d ? 'Unpublished design changes' : 'All changes published';
+    el.classList.toggle('pending', d);
+    $('#dPublish').disabled = !d;
+  }
+
+  /* Live preview: the real site in an iframe, receiving draft settings */
+  function previewTheme() {
+    const t = Theme.clone(state.theme);
+    if (state.phBlob) t.placeholder.image = state.phBlob;
+    return t;
+  }
+  function queuePreview() {
+    if (previewQueued) return;
+    previewQueued = true;
+    requestAnimationFrame(() => {
+      previewQueued = false;
+      const f = $('#pvFrame');
+      if (f.contentWindow && previewStarted) {
+        f.contentWindow.postMessage({ type: 'portfolio-theme', theme: previewTheme() }, location.origin);
+      }
+    });
+  }
+  window.addEventListener('message', e => {
+    if (e.origin === location.origin && e.data && e.data.type === 'portfolio-ready') queuePreview();
+  });
+
+  function layoutPreview() {
+    const box = $('#pv');
+    const f = $('#pvFrame');
+    const phone = df.pvMode.value === 'phone';
+    const W = phone ? 390 : 1280;
+    const avail = box.clientWidth || 600;
+    const scale = Math.min(1, avail / W);
+    const room = Math.max(420, window.innerHeight - 240);
+    const H = Math.round(phone ? Math.min(844, room / scale) : Math.max(640, room / scale));
+    f.style.width = W + 'px';
+    f.style.height = H + 'px';
+    f.style.transform = `scale(${scale})`;
+    f.style.left = Math.max(0, (avail - W * scale) / 2) + 'px';
+    box.style.height = Math.round(H * scale) + 'px';
+  }
+
+  function startDesign() {
+    if (!fontsLoaded) {
+      fontsLoaded = true;
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = Theme.fontsURL(Theme.FONTS.map(f => f.name));
+      document.head.appendChild(link);
+    }
+    if (!previewStarted) {
+      previewStarted = true;
+      if (window.innerWidth < 700) radio('pvMode', 'phone');
+      $('#pvFrame').src = SITE_BASE + '?preview=1';
+      new ResizeObserver(layoutPreview).observe($('#pv'));
+      window.addEventListener('resize', layoutPreview);
+    }
+    layoutPreview();
+  }
+
+  df.addEventListener('input', e => {
+    const el = e.target;
+    if (el.name === 'pvMode') { layoutPreview(); return; }
+    if (el.dataset.color || el.dataset.hex) {
+      const key = el.dataset.color || el.dataset.hex;
+      let v = el.value.trim();
+      if (!v.startsWith('#')) v = '#' + v;
+      if (!HEX6.test(v)) return;
+      state.theme.colors[key] = v.toUpperCase();
+      const same = Object.entries(Theme.PRESETS).find(([, pr]) =>
+        Object.keys(pr.colors).every(k => pr.colors[k].toUpperCase() === state.theme.colors[k].toUpperCase()));
+      state.theme.preset = same ? same[0] : 'custom';
+      syncColors();
+      refreshDesignUI();
+      return;
+    }
+    if (el.dataset.show !== undefined) {
+      state.theme.sections[+el.dataset.show].show = el.checked;
+      renderSections();
+      refreshDesignUI();
+      return;
+    }
+    if (el.name === 'phFile') {
+      const file = el.files[0];
+      if (state.phBlob) URL.revokeObjectURL(state.phBlob);
+      state.phFile = file || null;
+      state.phBlob = file ? URL.createObjectURL(file) : '';
+      if (file) radio('phStyle', 'image');
+    }
+    if (el.name === 'phImage' && state.phFile) {
+      state.phFile = null;
+      if (state.phBlob) URL.revokeObjectURL(state.phBlob);
+      state.phBlob = '';
+      df.phFile.value = '';
+    }
+    readDesign();
+    refreshDesignUI();
+  });
+  // Radios and selects fire "change" in some browsers without "input"
+  df.addEventListener('change', e => {
+    if (e.target.type === 'radio' || e.target.tagName === 'SELECT' || e.target.type === 'checkbox') {
+      if (e.target.name === 'pvMode') { layoutPreview(); return; }
+      if (e.target.dataset.show !== undefined) return;
+      readDesign();
+      refreshDesignUI();
+    }
+  });
+
+  $('#dPresets').addEventListener('click', e => {
+    const b = e.target.closest('[data-preset]');
+    if (!b) return;
+    state.theme.preset = b.dataset.preset;
+    state.theme.colors = { ...Theme.PRESETS[b.dataset.preset].colors };
+    syncColors();
+    refreshDesignUI();
+  });
+
+  $('#dSections').addEventListener('click', e => {
+    const b = e.target.closest('[data-move]');
+    if (!b) return;
+    const i = +b.dataset.i;
+    const j = b.dataset.move === 'up' ? i - 1 : i + 1;
+    const list = state.theme.sections;
+    if (j < 0 || j >= list.length) return;
+    [list[i], list[j]] = [list[j], list[i]];
+    renderSections();
+    const again = $(`#dSections [data-move="${b.dataset.move}"][data-i="${j}"]`);
+    if (again && !again.disabled) again.focus();
+    refreshDesignUI();
+  });
+
+  $('#dReset').addEventListener('click', () => {
+    if (!confirm('Reset fonts, colors and layout to the original design? Nothing changes on your site until you publish.')) return;
+    state.theme = Theme.clone(Theme.DEFAULT);
+    state.phFile = null;
+    if (state.phBlob) URL.revokeObjectURL(state.phBlob);
+    state.phBlob = '';
+    fillDesign();
+  });
+
+  df.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = $('#dPublish');
+    const status = $('#dStatus');
+    btn.disabled = true;
+    try {
+      if (state.phFile) {
+        if (state.phFile.size > MAX_THUMB_MB * 1024 * 1024) throw new Error(`Placeholder images can be up to ${MAX_THUMB_MB} MB.`);
+        status.textContent = 'Uploading placeholder image…';
+        state.theme.placeholder.image = await uploadFile(state.phFile, 'media', 'placeholder');
+        df.phImage.value = state.theme.placeholder.image;
+      }
+      status.textContent = 'Publishing…';
+      const site = { ...state.site, theme: Theme.clone(state.theme) };
+      await saveJSON('data/site.json', site, 'Update portfolio design');
+      state.site = site;
+      state.savedTheme = JSON.stringify(state.theme);
+      state.phFile = null;
+      df.phFile.value = '';
+      status.textContent = '';
+      toast('Design published. Your site updates in about a minute.');
+    } catch (err) {
+      console.error(err);
+      status.textContent = err.status || err instanceof TypeError ? explain(err) : err.message;
+    } finally {
+      updateDesignDirty();
+    }
+  });
+
   /* ---------------- Tabs, sign out, boot ---------------- */
 
   function selectTab(which) {
-    const works = which === 'works';
-    $('#tabWorks').setAttribute('aria-selected', works);
-    $('#tabProfile').setAttribute('aria-selected', !works);
-    $('#panelWorks').hidden = !works;
-    $('#panelProfile').hidden = works;
+    ['Works', 'Profile', 'Design'].forEach(name => {
+      const on = name.toLowerCase() === which;
+      $('#tab' + name).setAttribute('aria-selected', on);
+      $('#panel' + name).hidden = !on;
+    });
+    if (which === 'design') startDesign();
   }
   $('#tabWorks').addEventListener('click', () => selectTab('works'));
   $('#tabProfile').addEventListener('click', () => selectTab('profile'));
+  $('#tabDesign').addEventListener('click', () => selectTab('design'));
 
   $('#signOut').addEventListener('click', () => {
-    if (isDirty() && !confirm('You have unpublished changes. Sign out anyway?')) return;
+    if ((isDirty() || (state.theme && designDirty())) && !confirm('You have unpublished changes. Sign out anyway?')) return;
     localStorage.removeItem(KEY);
     state.savedWorks = JSON.stringify(state.works);
     location.reload();
   });
 
   window.addEventListener('beforeunload', e => {
-    if (state.cfg && state.site && isDirty()) { e.preventDefault(); e.returnValue = ''; }
+    if (state.cfg && state.site && (isDirty() || designDirty())) { e.preventDefault(); e.returnValue = ''; }
   });
 
   $('#connectForm').addEventListener('submit', e => {

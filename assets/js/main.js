@@ -25,6 +25,13 @@
   setupPlayer();
   init();
 
+  // Live preview: the admin's Design tab sends draft settings here.
+  window.addEventListener('message', e => {
+    if (e.origin !== location.origin || !e.data || e.data.type !== 'portfolio-theme') return;
+    Theme.apply(e.data.theme);
+    document.documentElement.classList.remove('pending');
+  });
+
   async function load(path) {
     // Cache-buster so new uploads show up right after GitHub Pages rebuilds.
     const res = await fetch(`${path}?v=${Date.now()}`, { cache: 'no-store' });
@@ -37,12 +44,15 @@
     try {
       const [s, w] = await Promise.all([load('data/site.json'), load('data/works.json')]);
       site = s || {};
+      Theme.apply(site.theme);
+      document.documentElement.classList.remove('pending');
       works = (w.works || []).filter(x => x && x.title);
       (site.categories || []).forEach(c => cats.set(c.id, c));
       renderProfile();
       renderTimeline();
       renderBins();
       renderGrid();
+      if (window.parent !== window) window.parent.postMessage({ type: 'portfolio-ready' }, location.origin);
       if (w.updated) {
         const d = new Date(w.updated + 'T00:00:00');
         if (!Number.isNaN(d.getTime())) {
@@ -51,6 +61,8 @@
       }
     } catch (err) {
       console.error(err);
+      Theme.apply(site.theme);
+      document.documentElement.classList.remove('pending');
       const why = location.protocol === 'file:'
         ? 'Browsers block data files opened straight from your computer. Open the site through GitHub Pages, or run a local server (see README).'
         : 'Check that data/works.json and data/site.json exist and are valid JSON.';
@@ -290,8 +302,11 @@
     };
   }
 
+  // Shown when a work has no thumbnail. Its look is chosen in Admin > Design.
   function posterHTML(w) {
-    return `<span class="poster"><span>${esc(w.title)}</span></span>`;
+    const c = cat(w.category);
+    const meta = [c.name, w.duration, w.year].filter(Boolean).map(x => `<span>${esc(x)}</span>`).join('');
+    return `<span class="poster"><span class="ph-slate" aria-hidden="true"></span><span class="ph-title">${esc(w.title)}</span><span class="ph-meta">${meta}</span></span>`;
   }
 
   function cardHTML(w) {

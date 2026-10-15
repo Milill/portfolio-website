@@ -28,7 +28,7 @@
     h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); }
     h2 { font-size: 1.5rem; }
 
-    .wrap { width: 100%; max-width: 960px; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
+    .wrap { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
 
     .a-top { position: sticky; top: 0; z-index: 20; background: rgba(29,27,36,.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
     .a-top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px; flex-wrap: wrap; padding-block: .5rem; }
@@ -123,6 +123,76 @@
     .cat-row { display: grid; grid-template-columns: 44px minmax(0, 1.1fr) 90px 120px minmax(0, 2fr) 38px; gap: .5rem; align-items: center; margin-bottom: .6rem; }
     .cat-head { color: var(--muted); font-size: .82rem; font-weight: 600; margin-bottom: .35rem; }
 
+    #panelWorks, #panelProfile { max-width: 960px; }
+
+    /* Design tab */
+    .design { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 1.5rem; align-items: start; }
+    .d-preview { position: sticky; top: 76px; }
+    .pv-bar { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: .6rem; flex-wrap: wrap; }
+    .pv-bar .seg { margin: 0; }
+    .pv { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: var(--r-m); background: var(--panel-2); }
+    .pv iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #fff; }
+    .pv-note { color: var(--muted); font-size: .85rem; margin: .5rem 0 0; }
+    .d-actions { position: sticky; bottom: 0; z-index: 5; display: flex; align-items: center; gap: .75rem 1rem; flex-wrap: wrap; margin-top: 1.25rem; padding: .85rem 0; background: var(--suite); border-top: 1px solid var(--line); }
+    .d-actions .spacer { flex: 1; }
+    .d-actions .status { flex-basis: 100%; }
+    .d-actions .status:empty { display: none; }
+
+    .font-sample { margin: -.5rem 0 1.25rem; padding: .7rem .9rem; border-radius: var(--r-s); background: var(--panel-2); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .font-sample.head { font-size: 2rem; font-weight: 700; line-height: 1.15; }
+    .font-sample.body { font-size: 1.05rem; }
+
+    .presets { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: .5rem; margin-bottom: 1.25rem; }
+    .preset { display: flex; align-items: center; gap: .55rem; min-height: 44px; padding: .45rem .7rem; border: 1px solid var(--line); border-radius: var(--r-s); background: transparent; cursor: pointer; font-weight: 600; font-size: .9rem; text-align: left; }
+    .preset:hover { border-color: var(--muted); }
+    .preset[aria-pressed="true"] { border-color: var(--paper); box-shadow: inset 0 0 0 1px var(--paper); }
+    .dots { display: inline-flex; flex: none; }
+    .dots i { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); margin-left: -4px; }
+    .dots i:first-child { margin-left: 0; }
+    .crow { display: grid; grid-template-columns: 44px minmax(0, 1fr) 6.5rem; align-items: center; gap: .75rem; margin-bottom: .6rem; }
+    .crow span { font-weight: 600; font-size: .95rem; }
+    .crow span small { display: block; color: var(--muted); font-weight: 400; font-size: .82rem; }
+    .crow input.hex { min-height: 40px; padding: .4rem .6rem; font-variant-numeric: tabular-nums; text-transform: uppercase; }
+    .contrast { margin: .75rem 0 0; font-size: .9rem; color: var(--muted); }
+    .contrast.warn { color: #FFB547; }
+
+    .range-row { display: grid; grid-template-columns: minmax(0, 1fr) 3.5rem; gap: .75rem; align-items: center; }
+    input[type=range] { width: 100%; accent-color: var(--playhead); min-height: 32px; }
+    output { font-variant-numeric: tabular-nums; color: var(--muted); text-align: right; }
+
+    .slist { list-style: none; margin: 0 0 1.25rem; padding: 0; display: grid; gap: .45rem; }
+    .slist li { display: flex; align-items: center; gap: .6rem; padding: .45rem .5rem .45rem .8rem; border: 1px solid var(--line); border-radius: var(--r-s); background: var(--panel-2); }
+    .slist li .sname { flex: 1; font-weight: 600; }
+    .slist li.off .sname { color: var(--muted); text-decoration: line-through; }
+    .slist label { display: inline-flex; align-items: center; gap: .4rem; font-size: .9rem; color: var(--muted); cursor: pointer; }
+    .slist input { width: 18px; height: 18px; accent-color: var(--playhead); }
+
+    .ph-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .6rem; margin-bottom: 1.1rem; }
+    .ph-tile { display: grid; gap: .4rem; cursor: pointer; font-size: .85rem; font-weight: 600; text-align: center; }
+    .ph-tile input { position: absolute; opacity: 0; pointer-events: none; }
+    .ph-mini { position: relative; aspect-ratio: 4 / 5; border-radius: var(--r-s); overflow: hidden; border: 2px solid transparent; background: #4A4170; color: #fff; display: flex; align-items: flex-start; padding: .45rem; font-size: .78rem; line-height: 1.05; text-align: left; font-weight: 700; }
+    .ph-tile:has(input:checked) .ph-mini { border-color: var(--paper); }
+    .ph-tile:has(input:focus-visible) .ph-mini { outline: 2px solid var(--paper); outline-offset: 2px; }
+    .ph-mini.slate { background: #24212C; padding-top: 1.25rem; }
+    .ph-mini.slate::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: .75rem; background: repeating-linear-gradient(-55deg, #F4F1F8 0 6px, #17151D 6px 12px); }
+    .ph-mini.plain { background: #6A5FA8; }
+    .ph-mini.image { background: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 60%), linear-gradient(135deg, #5B6B7A, #2B2F3A 60%, #7A5A4B); }
+    .ph-mini::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: #9B8CFF; }
+
+    @media (max-width: 900px) {
+      .design { grid-template-columns: minmax(0, 1fr); }
+      .d-preview { position: static; order: -1; }
+    }
+    @media (max-width: 480px) {
+      .d-actions { gap: .5rem; padding: .6rem 0; }
+      .d-actions .spacer { display: none; }
+      .d-actions .dirty { flex-basis: 100%; }
+      .d-actions .btn { flex: 1; min-height: 40px; }
+      .ph-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .crow { grid-template-columns: 44px minmax(0, 1fr); }
+      .crow input.hex { grid-column: 2; }
+    }
+
     .toast { position: fixed; left: 50%; bottom: 1.25rem; z-index: 100; transform: translate(-50%, 150%); max-width: calc(100vw - 2rem); padding: .8rem 1.2rem; border-radius: var(--r-m); background: var(--paper); color: var(--suite); font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,.4); transition: transform .25s; }
     .toast.show { transform: translate(-50%, 0); }
     .toast.error { background: #FF8A7D; }
@@ -184,6 +254,7 @@
       <div class="tabs" role="tablist">
         <button class="tab" role="tab" id="tabWorks" aria-selected="true" aria-controls="panelWorks" type="button">Works</button>
         <button class="tab" role="tab" id="tabProfile" aria-selected="false" aria-controls="panelProfile" type="button">Profile</button>
+        <button class="tab" role="tab" id="tabDesign" aria-selected="false" aria-controls="panelDesign" type="button">Design</button>
       </div>
 
       <div id="panelWorks" role="tabpanel" aria-labelledby="tabWorks">
@@ -234,6 +305,98 @@
           <div class="bar">
             <button class="btn btn-primary" type="submit" id="publishProfile">Publish profile</button>
             <p class="status" id="profileStatus" role="status"></p>
+          </div>
+        </form>
+      </div>
+
+      <div id="panelDesign" role="tabpanel" aria-labelledby="tabDesign" hidden>
+        <form id="designForm" novalidate>
+          <div class="design">
+            <div class="d-controls">
+
+              <div class="card-box">
+                <h2>Fonts</h2>
+                <label class="field"><span>Your name and headings</span><select name="headFont" id="dHeadFont"></select></label>
+                <p class="font-sample head" id="dHeadSample">Your Name</p>
+                <label class="field"><span>Body text</span><select name="bodyFont" id="dBodyFont"></select></label>
+                <p class="font-sample body" id="dBodySample">I edit reels, brand films and YouTube videos.</p>
+              </div>
+
+              <div class="card-box">
+                <h2>Colors</h2>
+                <div class="presets" id="dPresets" role="group" aria-label="Color presets"></div>
+                <div id="dColors"></div>
+                <p class="contrast" id="dContrast" role="status"></p>
+              </div>
+
+              <div class="card-box">
+                <h2>Text</h2>
+                <div class="field"><span>Name and intro</span>
+                  <div class="seg"><label><input type="radio" name="heroAlign" value="left"> Left</label><label><input type="radio" name="heroAlign" value="center"> Centered</label></div>
+                </div>
+                <div class="field"><span>Work and Contact titles</span>
+                  <div class="seg"><label><input type="radio" name="headAlign" value="left"> Left</label><label><input type="radio" name="headAlign" value="center"> Centered</label></div>
+                  <p class="hint" style="margin-top:-.4rem">About always sits beside your photo.</p>
+                </div>
+                <label class="field"><span>Name size</span>
+                  <span class="range-row"><input type="range" name="nameSize" min="60" max="140" step="5"><output id="oNameSize"></output></span></label>
+                <label class="field"><span>Section title size</span>
+                  <span class="range-row"><input type="range" name="headSize" min="70" max="130" step="5"><output id="oHeadSize"></output></span></label>
+                <div class="field"><span>Body text size</span>
+                  <div class="seg"><label><input type="radio" name="bodySize" value="16"> Small</label><label><input type="radio" name="bodySize" value="17"> Medium</label><label><input type="radio" name="bodySize" value="19"> Large</label></div>
+                </div>
+              </div>
+
+              <div class="card-box">
+                <h2>Sections and layout</h2>
+                <p class="hint" style="margin:-.5rem 0 .75rem">Order of the sections below your name. The menu follows the same order.</p>
+                <ul class="slist" id="dSections"></ul>
+                <label class="check"><input type="checkbox" name="timeline"> Show the editing timeline under your name</label>
+                <div class="field"><span>Work grid</span>
+                  <div class="seg"><label><input type="radio" name="gridLayout" value="masonry"> Masonry</label><label><input type="radio" name="gridLayout" value="uniform"> Even grid</label></div>
+                  <p class="hint" id="dGridHint" style="margin-top:-.4rem"></p>
+                </div>
+                <div class="field"><span>Columns on large screens</span>
+                  <div class="seg"><label><input type="radio" name="gridColumns" value="2"> 2</label><label><input type="radio" name="gridColumns" value="3"> 3</label><label><input type="radio" name="gridColumns" value="4"> 4</label></div>
+                </div>
+                <label class="field" id="dShapeField"><span>Card shape</span>
+                  <select name="cardShape"><option value="landscape">Landscape 16:9</option><option value="portrait">Portrait 4:5</option><option value="square">Square 1:1</option></select></label>
+              </div>
+
+              <div class="card-box">
+                <h2>Video placeholder</h2>
+                <p class="hint" style="margin:-.5rem 0 1rem">Shown for work that doesn't have a thumbnail yet.</p>
+                <div class="ph-tiles" role="radiogroup" aria-label="Placeholder style">
+                  <label class="ph-tile"><input type="radio" name="phStyle" value="title"><span class="ph-mini">Reel title</span>Color and title</label>
+                  <label class="ph-tile"><input type="radio" name="phStyle" value="slate"><span class="ph-mini slate">Reel title</span>Film slate</label>
+                  <label class="ph-tile"><input type="radio" name="phStyle" value="plain"><span class="ph-mini plain"></span>Color only</label>
+                  <label class="ph-tile"><input type="radio" name="phStyle" value="image"><span class="ph-mini image">Reel title</span>Your image</label>
+                </div>
+                <label class="check" id="dPhTitleField"><input type="checkbox" name="phTitle"> Show the title on placeholders</label>
+                <div id="dPhImageField">
+                  <label class="field"><span>Placeholder image link</span><input type="text" name="phImage" placeholder="media/placeholder.jpg or https://…" autocapitalize="off" spellcheck="false"></label>
+                  <label class="field"><span>Or upload an image</span><input type="file" name="phFile" accept="image/*">
+                    <p class="hint">A frame from your showreel or a branded background works well.</p></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-preview">
+              <div class="pv-bar">
+                <strong>Preview</strong>
+                <div class="seg"><label><input type="radio" name="pvMode" value="desktop" checked> Desktop</label><label><input type="radio" name="pvMode" value="phone"> Phone</label></div>
+              </div>
+              <div class="pv" id="pv"><iframe id="pvFrame" title="Preview of your site with these design settings"></iframe></div>
+              <p class="pv-note">You can scroll and click inside the preview. Changes go live only when you publish.</p>
+            </div>
+          </div>
+
+          <div class="d-actions">
+            <span class="dirty" id="dDirty">All changes published</span>
+            <span class="spacer"></span>
+            <button class="btn" type="button" id="dReset">Reset to default</button>
+            <button class="btn btn-primary" type="submit" id="dPublish" disabled>Publish design</button>
+            <p class="status" id="dStatus" role="status"></p>
           </div>
         </form>
       </div>
@@ -304,6 +467,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="../assets/js/media.js"></script>
+  <script src="../assets/js/theme.js"></script>
   <script src="admin.js"></script>
 </body>
 </html>

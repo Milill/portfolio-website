@@ -9,6 +9,7 @@ index.html            The portfolio page
 assets/css/style.css  All styling (colors at the top)
 assets/js/main.js     Builds the timeline, grid and player
 assets/js/media.js    Understands YouTube, Vimeo, Instagram, Drive and file links
+assets/js/theme.js    Fonts, colors and layout options from the Design tab
 data/site.json        Your name, bio, contact, categories
 data/works.json       Your work list
 admin/                The admin panel
@@ -60,6 +61,18 @@ In the admin panel, choose **Add work**, fill in the details, choose **Save work
 - **Duration** (like `0:45`) sets each clip's length on the timeline and shows on the card.
 - Categories (name, color, timeline track, default shape) are edited in the **Profile** tab.
 
+## 4. Change the design
+
+Open the **Design** tab in the admin panel. A live preview of your real site sits beside the controls, so every change shows up instantly. Nothing goes live until you choose **Publish design**.
+
+- **Fonts:** pick one font for your name and headings and one for body text, from 13 fonts suited to creative portfolios.
+- **Colors:** start from a preset (Edit suite, Teal grade, Midnight, Film stock, Mono, Daylight), then fine-tune the background, panels, text, secondary text and accent. A readability check warns you if text gets hard to read.
+- **Text:** align your name and intro left or centered, align the Work and Contact titles, and adjust the name size, section title size and body text size.
+- **Sections and layout:** reorder or hide Work, About and Contact (the menu follows), turn the timeline on or off, choose a masonry grid (each video keeps its shape) or an even grid (every card the same shape), and set 2–4 columns.
+- **Video placeholder:** choose how work without a thumbnail looks: color and title, a film slate, color only, or your own uploaded image.
+
+**Reset to default** brings back the original design. Your design settings are stored in `data/site.json` under `"theme"`.
+
 ## Editing by hand (optional)
 
 You can also edit `data/works.json` directly on GitHub. Each work looks like this:
@@ -92,9 +105,9 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000`.
 
-## Changing the look
+## Changing the look in code
 
-Colors live at the top of `assets/css/style.css`. The font is Bricolage Grotesque from Google Fonts, loaded in `index.html`.
+Most design changes are easiest in **Admin → Design**. For deeper changes, the base styles live in `assets/css/style.css` and the font list and color presets live in `assets/js/theme.js`.
 
 ## Custom domain (optional)
 
