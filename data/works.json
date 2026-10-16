@@ -2,6 +2,20 @@
   "updated": "2026-10-16",
   "works": [
     {
+      "id": "mvbewpv4jy5v",
+      "title": "Aval - Music video",
+      "category": "edit",
+      "url": "https://youtu.be/fOJdTdSWrnA?si=SOsNgSXR0merXJCn",
+      "year": 2026,
+      "tools": [
+        "Premiere Pro",
+        "After Effects",
+        "DaVinci Resolve",
+        "Photoshop",
+        "AI tools"
+      ]
+    },
+    {
       "id": "mvalm043up9i",
       "title": "Ai fashion",
       "category": "ai",
