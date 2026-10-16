@@ -2,6 +2,35 @@
   "updated": "2026-10-16",
   "works": [
     {
+      "id": "mvbf1xncvhfd",
+      "title": "Aval music video - Bts",
+      "category": "edit",
+      "url": "https://www.instagram.com/reel/DbLS4UFx-GE/?utm_source=ig_web_copy_link&mdxt=MWQ1ZGUxMzBkMA==&srtk=MWQ1ZGUxMzBkMA==",
+      "tools": [
+        "Premiere Pro"
+      ]
+    },
+    {
+      "id": "mvbf0sm57kod",
+      "title": "Aval music video - Bts",
+      "category": "edit",
+      "url": "https://www.instagram.com/reel/Dbafn_ORpXG/?utm_source=ig_web_copy_link&rpxt=MWQ1ZGUxMzBkMA==&srtk=MWQ1ZGUxMzBkMA==",
+      "tools": [
+        "Premiere Pro"
+      ]
+    },
+    {
+      "id": "mvbezra0gjwl",
+      "title": "Pokham doore - music video",
+      "category": "edit",
+      "url": "https://youtu.be/tzk0IS3Q2zs?si=xAwIB7op0kEJaXdR",
+      "tools": [
+        "Premiere Pro",
+        "DaVinci Resolve"
+      ],
+      "description": "I worked as conformist on this project."
+    },
+    {
       "id": "mvbewpv4jy5v",
       "title": "Aval - Music video",
       "category": "edit",
@@ -19,96 +48,13 @@
       "id": "mvalm043up9i",
       "title": "Ai fashion",
       "category": "ai",
-      "url": "https://www-ccv.adobe.io/v1/player/ccv/AJY-ZedSAoE?api_key=behance1",
-      "year": 2026
+      "url": "https://www-ccv.adobe.io/v1/player/ccv/AJY-ZedSAoE?api_key=behance1"
     },
     {
       "id": "mv9vb5hsmkwa",
       "title": "isgcon",
       "category": "edit",
       "url": "https://drive.google.com/file/d/1MA51Hz1OAQzcA8kBbBWyGSKi_8G3Njjb/view?usp=sharing",
-      "year": 2026,
-      "featured": true
-    },
-    {
-      "id": "sample-1",
-      "title": "Demo clip: replace with your best edit",
-      "category": "edit",
-      "url": "https://youtu.be/Jo9dDsV9_-c?si=bj8BfrIBssXmwgQR",
-      "thumbnail": "media/thumbs/demo-clip-replace-with-your-best-edit-mv9v79sa.png",
-      "duration": "1:45",
-      "year": 2026,
-      "tools": [
-        "Premiere Pro",
-        "DaVinci Resolve"
-      ],
-      "description": "This is a sample entry using a public Blender Foundation film so you can see how YouTube links play. Delete it from the admin panel once your own work is in.",
-      "featured": true
-    },
-    {
-      "id": "sample-2",
-      "title": "Monsoon week travel reel",
-      "category": "reel",
-      "url": "",
-      "duration": "0:30",
-      "year": 2026,
-      "tools": [
-        "CapCut"
-      ],
-      "description": "Sample reel. Add an Instagram, YouTube Shorts or uploaded video link from the admin panel.",
-      "featured": true
-    },
-    {
-      "id": "sample-3",
-      "title": "The last lighthouse, an AI short film",
-      "category": "ai",
-      "url": "",
-      "duration": "2:10",
-      "year": 2026,
-      "tools": [
-        "Runway",
-        "Midjourney",
-        "ElevenLabs"
-      ],
-      "description": "Sample AI piece. Describe your prompt process and what you finished by hand.",
-      "featured": true
-    },
-    {
-      "id": "sample-4",
-      "title": "Coffee roastery brand film",
-      "category": "edit",
-      "url": "",
-      "duration": "1:20",
-      "year": 2025,
-      "tools": [
-        "Premiere Pro",
-        "After Effects"
-      ],
-      "featured": true
-    },
-    {
-      "id": "sample-5",
-      "title": "Product launch reel",
-      "category": "reel",
-      "url": "",
-      "duration": "0:45",
-      "year": 2025,
-      "tools": [
-        "Premiere Pro"
-      ],
-      "featured": true
-    },
-    {
-      "id": "sample-6",
-      "title": "AI portrait series",
-      "category": "ai",
-      "url": "",
-      "duration": "0:40",
-      "year": 2025,
-      "tools": [
-        "Midjourney",
-        "Photoshop"
-      ],
       "featured": true
     },
     {
@@ -120,28 +66,6 @@
       "year": 2025,
       "tools": [
         "DaVinci Resolve"
-      ]
-    },
-    {
-      "id": "sample-8",
-      "title": "Podcast clip pack",
-      "category": "reel",
-      "url": "",
-      "duration": "0:58",
-      "year": 2025,
-      "tools": [
-        "Premiere Pro"
-      ]
-    },
-    {
-      "id": "sample-9",
-      "title": "Channel intro animation",
-      "category": "other",
-      "url": "",
-      "duration": "0:12",
-      "year": 2024,
-      "tools": [
-        "After Effects"
       ]
     }
   ]
