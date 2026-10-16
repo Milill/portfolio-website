@@ -100,7 +100,7 @@
       }
     ],
     "timeline": false,
-    "gridLayout": "masonry",
+    "gridLayout": "uniform",
     "gridColumns": 3,
     "uniformShape": "landscape",
     "placeholder": {
