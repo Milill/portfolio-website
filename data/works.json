@@ -2,10 +2,29 @@
   "updated": "2026-10-20",
   "works": [
     {
-      "id": "mvgzzfhiqo1d",
-      "title": "cinematic edit",
+      "id": "mvbewpv4jy5v",
+      "title": "Aval - Music video",
       "category": "edit",
-      "url": "https://youtube.com/shorts/_gqfGilIMOs?feature=share"
+      "url": "https://youtu.be/fOJdTdSWrnA?si=SOsNgSXR0merXJCn",
+      "year": 2026,
+      "tools": [
+        "Premiere Pro",
+        "After Effects",
+        "DaVinci Resolve",
+        "Photoshop",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "mvbezra0gjwl",
+      "title": "Pokham doore - music video",
+      "category": "edit",
+      "url": "https://youtu.be/tzk0IS3Q2zs?si=xAwIB7op0kEJaXdR",
+      "tools": [
+        "Premiere Pro",
+        "DaVinci Resolve"
+      ],
+      "description": "I worked as conformist on this project."
     },
     {
       "id": "mvgzytsmweob",
@@ -22,6 +41,18 @@
         "Premiere Pro",
         "after effects"
       ]
+    },
+    {
+      "id": "mvgzzfhiqo1d",
+      "title": "cinematic edit",
+      "category": "edit",
+      "url": "https://youtube.com/shorts/_gqfGilIMOs?feature=share"
+    },
+    {
+      "id": "mvh005imthvt",
+      "title": "Speed ramp",
+      "category": "edit",
+      "url": "https://youtube.com/shorts/HFnjG7TsyhU?feature=share"
     },
     {
       "id": "mvbf1xncvhfd",
@@ -49,31 +80,6 @@
         "Premiere Pro",
         "After Effects"
       ]
-    },
-    {
-      "id": "mvbewpv4jy5v",
-      "title": "Aval - Music video",
-      "category": "edit",
-      "url": "https://youtu.be/fOJdTdSWrnA?si=SOsNgSXR0merXJCn",
-      "year": 2026,
-      "tools": [
-        "Premiere Pro",
-        "After Effects",
-        "DaVinci Resolve",
-        "Photoshop",
-        "AI tools"
-      ]
-    },
-    {
-      "id": "mvbezra0gjwl",
-      "title": "Pokham doore - music video",
-      "category": "edit",
-      "url": "https://youtu.be/tzk0IS3Q2zs?si=xAwIB7op0kEJaXdR",
-      "tools": [
-        "Premiere Pro",
-        "DaVinci Resolve"
-      ],
-      "description": "I worked as conformist on this project."
     },
     {
       "id": "mvfc2873hscx",
@@ -164,7 +170,7 @@
       "title": "isgcon",
       "category": "edit",
       "url": "https://drive.google.com/file/d/1MA51Hz1OAQzcA8kBbBWyGSKi_8G3Njjb/view?usp=sharing",
-      "featured": true
+      "featured": false
     }
   ]
 }
