@@ -2,6 +2,28 @@
   "updated": "2026-10-20",
   "works": [
     {
+      "id": "mvgzzfhiqo1d",
+      "title": "cinematic edit",
+      "category": "edit",
+      "url": "https://youtube.com/shorts/_gqfGilIMOs?feature=share"
+    },
+    {
+      "id": "mvgzytsmweob",
+      "title": "ad - motion graphics",
+      "category": "reel",
+      "url": "https://youtube.com/shorts/MT8Y4Fa3y1w?feature=share"
+    },
+    {
+      "id": "mvgww2z1lpde",
+      "title": "motion graphics",
+      "category": "edit",
+      "url": "https://youtu.be/CZdrAjhPODI",
+      "tools": [
+        "Premiere Pro",
+        "after effects"
+      ]
+    },
+    {
       "id": "mvbf1xncvhfd",
       "title": "Aval music video - Bts",
       "category": "edit",
