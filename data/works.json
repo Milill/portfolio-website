@@ -1,11 +1,57 @@
 {
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "works": [
     {
-      "id": "mvfc326f1gew",
-      "title": "Duice ad",
+      "id": "mvbf1xncvhfd",
+      "title": "Aval music video - Bts",
       "category": "edit",
-      "url": "https://youtu.be/5a_LyePnZBo"
+      "url": "https://youtu.be/fOJdTdSWrnA?si=pAKlMz5Lp4A7pUeC",
+      "tools": [
+        "Premiere Pro"
+      ]
+    },
+    {
+      "id": "mvfc057ze2kb",
+      "title": "A movie script pre viz",
+      "category": "ai",
+      "url": "https://youtu.be/uPxrh05xuqM",
+      "year": 2026
+    },
+    {
+      "id": "mveu3v426o8y",
+      "title": "Aveeno baby reels",
+      "category": "edit",
+      "url": "https://youtu.be/GDZbWz0QznY",
+      "year": 2026,
+      "tools": [
+        "Premiere Pro",
+        "After Effects"
+      ]
+    },
+    {
+      "id": "mvbewpv4jy5v",
+      "title": "Aval - Music video",
+      "category": "edit",
+      "url": "https://youtu.be/fOJdTdSWrnA?si=SOsNgSXR0merXJCn",
+      "year": 2026,
+      "tools": [
+        "Premiere Pro",
+        "After Effects",
+        "DaVinci Resolve",
+        "Photoshop",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "mvbezra0gjwl",
+      "title": "Pokham doore - music video",
+      "category": "edit",
+      "url": "https://youtu.be/tzk0IS3Q2zs?si=xAwIB7op0kEJaXdR",
+      "tools": [
+        "Premiere Pro",
+        "DaVinci Resolve"
+      ],
+      "description": "I worked as conformist on this project."
     },
     {
       "id": "mvfc2873hscx",
@@ -15,17 +61,41 @@
       "year": 2026
     },
     {
+      "id": "mvalm043up9i",
+      "title": "Ai fashion",
+      "category": "ai",
+      "url": "https://youtu.be/rKrnP6Ce9ys"
+    },
+    {
+      "id": "mvfbqh6gu0j1",
+      "title": "AI content",
+      "category": "ai",
+      "url": "https://youtu.be/d38wg_8JLbc",
+      "year": 2026
+    },
+    {
+      "id": "mvbf77hsuoj2",
+      "title": "Brand fashion ad",
+      "category": "ai",
+      "url": "https://youtube.com/shorts/8UCduAqDcQA?feature=share",
+      "tools": [
+        "Premiere Pro",
+        "After Effects",
+        "Photoshop",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "mvfc326f1gew",
+      "title": "Duice ad",
+      "category": "edit",
+      "url": "https://youtu.be/5a_LyePnZBo"
+    },
+    {
       "id": "mvfc0y0guc2r",
       "title": "Remake",
       "category": "edit",
       "url": "https://youtu.be/VOvlKWw6T2Q",
-      "year": 2026
-    },
-    {
-      "id": "mvfc057ze2kb",
-      "title": "A movie script pre viz",
-      "category": "ai",
-      "url": "https://youtu.be/uPxrh05xuqM",
       "year": 2026
     },
     {
@@ -43,13 +113,6 @@
       "year": 2026
     },
     {
-      "id": "mvfbqh6gu0j1",
-      "title": "AI content",
-      "category": "ai",
-      "url": "https://youtu.be/d38wg_8JLbc",
-      "year": 2026
-    },
-    {
       "id": "mvfblvqgzobt",
       "title": "Miko ai add",
       "category": "ai",
@@ -58,29 +121,6 @@
       "tools": [
         "Ai tools",
         "premiere pro"
-      ]
-    },
-    {
-      "id": "mveu3v426o8y",
-      "title": "Aveeno baby reels",
-      "category": "edit",
-      "url": "https://youtu.be/GDZbWz0QznY",
-      "year": 2026,
-      "tools": [
-        "Premiere Pro",
-        "After Effects"
-      ]
-    },
-    {
-      "id": "mvbf77hsuoj2",
-      "title": "Brand fashion ad",
-      "category": "ai",
-      "url": "https://youtube.com/shorts/8UCduAqDcQA?feature=share",
-      "tools": [
-        "Premiere Pro",
-        "After Effects",
-        "Photoshop",
-        "AI tools"
       ]
     },
     {
@@ -94,47 +134,8 @@
         "DaVinci Resolve",
         "Photoshop",
         "AI tools"
-      ]
-    },
-    {
-      "id": "mvbf1xncvhfd",
-      "title": "Aval music video - Bts",
-      "category": "edit",
-      "url": "https://youtu.be/fOJdTdSWrnA?si=pAKlMz5Lp4A7pUeC",
-      "tools": [
-        "Premiere Pro"
-      ]
-    },
-    {
-      "id": "mvbezra0gjwl",
-      "title": "Pokham doore - music video",
-      "category": "edit",
-      "url": "https://youtu.be/tzk0IS3Q2zs?si=xAwIB7op0kEJaXdR",
-      "tools": [
-        "Premiere Pro",
-        "DaVinci Resolve"
       ],
-      "description": "I worked as conformist on this project."
-    },
-    {
-      "id": "mvbewpv4jy5v",
-      "title": "Aval - Music video",
-      "category": "edit",
-      "url": "https://youtu.be/fOJdTdSWrnA?si=SOsNgSXR0merXJCn",
-      "year": 2026,
-      "tools": [
-        "Premiere Pro",
-        "After Effects",
-        "DaVinci Resolve",
-        "Photoshop",
-        "AI tools"
-      ]
-    },
-    {
-      "id": "mvalm043up9i",
-      "title": "Ai fashion",
-      "category": "ai",
-      "url": "https://youtu.be/rKrnP6Ce9ys"
+      "featured": false
     },
     {
       "id": "mv9vb5hsmkwa",
@@ -142,17 +143,6 @@
       "category": "edit",
       "url": "https://drive.google.com/file/d/1MA51Hz1OAQzcA8kBbBWyGSKi_8G3Njjb/view?usp=sharing",
       "featured": true
-    },
-    {
-      "id": "sample-7",
-      "title": "Wedding highlight film",
-      "category": "edit",
-      "url": "",
-      "duration": "3:20",
-      "year": 2025,
-      "tools": [
-        "DaVinci Resolve"
-      ]
     }
   ]
 }
